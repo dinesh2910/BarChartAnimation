@@ -11,7 +11,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State var pickerSelectedItem = 0
-    @State var dataPoins: [CGFloat] = [50, 100, 150]
+    @State var dataPoins: [[CGFloat]] = [[50, 100, 150, 30, 90,73,190],[130,90,130,20,77,90,100],[60,120,30,90,55,180,110]
+    ]
     var body: some View {
         ZStack {
             Color(#colorLiteral(red: 0.3378706319, green: 0.937254902, blue: 0.9115050101, alpha: 1)).edgesIgnoringSafeArea(.all)
@@ -30,14 +31,15 @@ struct ContentView: View {
                 
                 
                 HStack (spacing: 20) {
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
-                     BarView(topCapsuleValue: dataPoins[pickerSelectedItem])
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][0], dayTitle: "Su")
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][1], dayTitle: "M")
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][2], dayTitle: "Tu")
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][3], dayTitle: "W")
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][4], dayTitle: "TH")
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][5], dayTitle: "F")
+                    BarView(topCapsuleValue: dataPoins[pickerSelectedItem][6], dayTitle: "S")
                 }.padding(.top, 24)
+                    .animation(.default)
             }
         }
     }
@@ -45,6 +47,7 @@ struct ContentView: View {
 
 struct BarView: View {
     var topCapsuleValue: CGFloat
+    var dayTitle: String
     
     var body: some View {
     VStack {
@@ -54,7 +57,8 @@ struct BarView: View {
             Capsule().frame(width: 30, height: topCapsuleValue)
                 .foregroundColor(.white)
         }
-        Text("Su").padding(.top, 8)
+        Text(dayTitle).padding(.top, 8)
+           
     }
   }
 }
